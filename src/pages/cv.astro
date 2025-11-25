@@ -1,0 +1,83 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.astro';
+---
+
+<Layout title="CV | Katie Ballinger" description="Curriculum Vitae of Katie Ballinger">
+  <div class="min-h-screen">
+    <Header />
+    
+    <main class="py-16">
+      <div class="max-w-4xl mx-auto px-8">
+        <h1 class="text-3xl tracking-[0.15em] font-normal text-accent uppercase mb-12">
+          CV
+        </h1>
+        
+        <!-- Education -->
+        <section class="mb-12">
+          <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
+            Education
+          </h2>
+          <div class="space-y-4">
+            <div>
+              <p class="text-text-primary">Master of Arts, New Media</p>
+              <p class="text-text-secondary text-sm">Aalto University, Helsinki — 2022</p>
+            </div>
+            <div>
+              <p class="text-text-primary">Bachelor of Fine Arts</p>
+              <p class="text-text-secondary text-sm">University of Arts — 2019</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Experience -->
+        <section class="mb-12">
+          <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
+            Experience
+          </h2>
+          <div class="space-y-4">
+            <div>
+              <p class="text-text-primary">Independent Artist & Designer</p>
+              <p class="text-text-secondary text-sm">2022 — Present</p>
+            </div>
+            <div>
+              <p class="text-text-primary">Research Assistant, Media Lab</p>
+              <p class="text-text-secondary text-sm">Aalto University — 2020–2022</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Exhibitions -->
+        <section class="mb-12">
+          <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
+            Exhibitions
+          </h2>
+          <div class="space-y-4">
+            <div>
+              <p class="text-text-primary">KALEIDO — Solo Exhibition</p>
+              <p class="text-text-secondary text-sm">Helsinki Design Museum — 2024</p>
+            </div>
+            <div>
+              <p class="text-text-primary">PONDERING — Group Exhibition</p>
+              <p class="text-text-secondary text-sm">Aalto Studios — 2023</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Skills -->
+        <section class="mb-12">
+          <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
+            Skills
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {['TouchDesigner', '3D Printing', 'Arduino', 'Processing', 'Projection Mapping', 'Fabrication', 'Interactive Design', 'Sound Design'].map((skill) => (
+              <span class="text-accent text-xs border border-accent px-3 py-1">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</Layout>

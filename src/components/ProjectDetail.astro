@@ -1,0 +1,96 @@
+---
+interface Props {
+  title: string;
+  dateRange: string;
+  location: string;
+  tags: string[];
+  images: string[];
+  description: string;
+  videoLink?: string;
+}
+
+const { title, dateRange, location, tags, images, description, videoLink } = Astro.props;
+---
+
+<article class="py-12">
+  <div class="max-w-6xl mx-auto px-8">
+    <!-- Header with title and metadata -->
+    <div class="flex flex-col md:flex-row gap-8 mb-8">
+      <!-- Left: Main image -->
+      <div class="md:w-1/3">
+        {images[0] && (
+          <div class="border-4 border-border overflow-hidden">
+            <img 
+              src={images[0]} 
+              alt={title}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+        )}
+      </div>
+      
+      <!-- Right: Title, metadata, and secondary image -->
+      <div class="md:w-2/3 flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/2 space-y-3">
+          <h1 class="text-2xl tracking-[0.15em] font-normal text-accent uppercase">
+            {title}
+          </h1>
+          <p class="text-text-secondary text-sm tracking-wide">{dateRange}</p>
+          <p class="text-text-secondary text-sm">{location}</p>
+          <div class="flex flex-wrap gap-1 pt-1">
+            {tags.map((tag) => (
+              <span class="text-accent text-xs">#{tag}</span>
+            ))}
+          </div>
+        </div>
+        
+        {images[1] && (
+          <div class="md:w-1/2">
+            <div class="border-4 border-border overflow-hidden">
+              <img 
+                src={images[1]} 
+                alt={`${title} - secondary`}
+                class="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+            {videoLink && (
+              <a 
+                href={videoLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-block text-accent text-xs underline underline-offset-2 hover:opacity-80 transition-opacity mt-3"
+              >
+                {videoLink}
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+    
+    <!-- Description -->
+    <div class="max-w-md">
+      <p class="text-text-secondary text-sm leading-relaxed text-justify">
+        {description}
+      </p>
+    </div>
+    
+    <!-- Additional images -->
+    {images.length > 2 && (
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+        {images.slice(2).map((img, i) => (
+          <div class="border-4 border-border overflow-hidden">
+            <img 
+              src={img} 
+              alt={`${title} - image ${i + 3}`}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</article>

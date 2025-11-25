@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/* Custom theme configuration */
+@theme {
+  /* Dark purple background colors */
+  --color-bg-primary: #5c5470;
+  --color-bg-dark: #4a4458;
+  --color-bg-darker: #3d3850;
+  
+  /* Teal accent colors */
+  --color-accent-400: #2dd4bf;
+  --color-accent-500: #14b8a6;
+  --color-accent-600: #0d9488;
+  
+  /* Text colors */
+  --color-text-primary: #e5e5e5;
+  --color-text-secondary: #a8a8a8;
+  --color-text-muted: #888888;
+  
+  /* Border colors */
+  --color-border: #6b6580;
+  
+  /* Fonts */
+  --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+}
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  /* Typography defaults */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+    color: var(--color-accent-400);
+  }
+
+  a {
+    @apply transition-colors;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-accent {
+    color: var(--color-accent-400);
+  }
+  
+  .bg-site {
+    background-color: var(--color-bg-primary);
+  }
+  
+  .border-site {
+    border-color: var(--color-border);
+  }
+  
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}

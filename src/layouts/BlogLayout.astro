@@ -1,0 +1,65 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  publishDate?: Date;
+  author?: string;
+  tags?: string[];
+}
+
+const { title, description, publishDate, author, tags = [] } = Astro.props;
+
+const formattedDate = publishDate
+  ? new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(publishDate)
+  : null;
+---
+
+<BaseLayout title={`${title} | Blog`} description={description}>
+  <article class="py-12 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 pb-8 border-b border-gray-200 dark:border-gray-800">
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            {title}
+          </h1>
+
+          {description && (
+            <p class="text-xl text-gray-600 dark:text-gray-400 mb-4">
+              {description}
+            </p>
+          )}
+
+          <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+            {author && <span>By {author}</span>}
+            {formattedDate && <time datetime={publishDate?.toISOString()}>{formattedDate}</time>}
+          </div>
+
+          {tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-4">
+              {tags.map((tag) => (
+                <a
+                  href={`/blog/tag/${tag}`}
+                  class="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900 transition-colors"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </header>
+
+        <!-- Content -->
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

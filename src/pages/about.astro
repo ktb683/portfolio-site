@@ -1,0 +1,46 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.astro';
+---
+
+<Layout title="About | Katie Ballinger" description="About Katie Ballinger">
+  <div class="min-h-screen">
+    <Header />
+    
+    <main class="py-16">
+      <div class="max-w-4xl mx-auto px-8">
+        <h1 class="text-3xl tracking-[0.15em] font-normal text-accent uppercase mb-8">
+          ABOUT
+        </h1>
+        
+        <div class="space-y-6 text-text-secondary leading-relaxed max-w-2xl">
+          <p>
+            Katie Ballinger is an artist and designer based in Helsinki, Finland, 
+            working at the intersection of technology, interactivity, and physical installation.
+          </p>
+          
+          <p>
+            Her practice explores how people interact with digital systems through 
+            tangible interfaces, creating immersive experiences that invite participation 
+            and play.
+          </p>
+          
+          <p>
+            With a background in electronics, 3D printing, and creative coding, 
+            Katie develops custom tools and installations that bridge the gap between 
+            the digital and physical worlds.
+          </p>
+        </div>
+        
+        <div class="mt-12">
+          <h2 class="text-xl tracking-[0.1em] text-accent uppercase mb-4">Contact</h2>
+          <p class="text-text-secondary text-sm">
+            <a href="mailto:hello@katieballinger.com" class="text-accent hover:underline">
+              hello@katieballinger.com
+            </a>
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>

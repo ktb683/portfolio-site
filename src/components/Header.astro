@@ -1,0 +1,178 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { name: 'WORKS', href: '/' },
+  { name: 'ABOUT', href: '/about' },
+  { name: 'CV', href: '/cv' },
+];
+---
+
+<header class="py-6 px-8">
+  <nav class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between">
+      <!-- Logo Section -->
+      <a href="/" class="flex items-center gap-4 group">
+        <!-- Gear/Mandala Logo -->
+        <div class="relative w-20 h-20">
+          <svg viewBox="0 0 100 100" class="w-full h-full">
+            <!-- Outer gear teeth -->
+            <g class="fill-none stroke-[#8b7fb5] stroke-[2]">
+              {Array.from({ length: 12 }).map((_, i) => {
+                const angle = (i * 30) * Math.PI / 180;
+                const x1 = 50 + 42 * Math.cos(angle);
+                const y1 = 50 + 42 * Math.sin(angle);
+                const x2 = 50 + 48 * Math.cos(angle);
+                const y2 = 50 + 48 * Math.sin(angle);
+                return <line x1={x1} y1={y1} x2={x2} y2={y2} />;
+              })}
+            </g>
+            <!-- Decorative mandala circle -->
+            <circle cx="50" cy="50" r="38" class="fill-none stroke-[#2dd4bf] stroke-[1.5] opacity-60" />
+            <circle cx="50" cy="50" r="30" class="fill-none stroke-[#8b7fb5] stroke-[1]" />
+            <!-- Inner decorative elements -->
+            <g class="fill-[#2dd4bf] opacity-70">
+              {Array.from({ length: 8 }).map((_, i) => {
+                const angle = (i * 45) * Math.PI / 180;
+                const x = 50 + 20 * Math.cos(angle);
+                const y = 50 + 20 * Math.sin(angle);
+                return <circle cx={x} cy={y} r="3" />;
+              })}
+            </g>
+            <circle cx="50" cy="50" r="8" class="fill-none stroke-[#2dd4bf] stroke-[2]" />
+          </svg>
+        </div>
+        
+        <!-- Name -->
+        <span class="text-3xl tracking-[0.3em] text-accent font-light">
+          <span class="inline-block border-l-2 border-accent pl-5">K</span>ATIE BALLINGER
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-10">
+        <ul class="flex gap-10">
+          {navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'text-sm tracking-[0.2em] transition-colors hover:text-accent',
+                  currentPath === item.href ||
+                  (item.href === '/' && currentPath === '/') ||
+                  (item.href !== '/' && currentPath.startsWith(item.href))
+                    ? 'text-text-primary underline underline-offset-4'
+                    : 'text-text-secondary',
+                ]}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+        
+        <!-- Instagram Icon -->
+        <a 
+          href="https://instagram.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-text-secondary hover:text-accent transition-colors"
+          aria-label="Instagram"
+        >
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="18" cy="6" r="1.5" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+          class="p-2 text-text-secondary hover:text-accent transition-colors"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              id="menu-icon-open"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+            <path
+              id="menu-icon-close"
+              class="hidden"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden mt-6 pb-4">
+      <ul class="flex flex-col gap-4">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                'block py-2 text-sm tracking-[0.2em] transition-colors hover:text-accent',
+                currentPath === item.href ||
+                (item.href === '/' && currentPath === '/') ||
+                (item.href !== '/' && currentPath.startsWith(item.href))
+                  ? 'text-text-primary underline underline-offset-4'
+                  : 'text-text-secondary',
+              ]}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="block py-2 text-sm tracking-[0.2em] text-text-secondary hover:text-accent transition-colors"
+          >
+            INSTAGRAM
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  function initMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+
+    btn?.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      menu?.classList.toggle('hidden');
+      iconOpen?.classList.toggle('hidden');
+      iconClose?.classList.toggle('hidden');
+    });
+  }
+
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

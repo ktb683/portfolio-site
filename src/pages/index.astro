@@ -1,0 +1,45 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all projects sorted by date
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => {
+  return b.data.startDate.getTime() - a.data.startDate.getTime();
+});
+
+// Helper function to format date range
+function formatDateRange(startDate: Date, endDate?: Date, ongoing?: boolean): string {
+  const startYear = startDate.getFullYear();
+  if (ongoing) {
+    return `${startYear} - ONGOING`;
+  }
+  if (endDate) {
+    const endYear = endDate.getFullYear();
+    return startYear === endYear ? `${startYear}` : `${startYear} - ${endYear}`;
+  }
+  return `${startYear}`;
+}
+---
+
+<Layout title="Katie Ballinger | Works" description="Portfolio of creative works by Katie Ballinger">
+  <div class="min-h-screen">
+    <Header />
+    
+    <main class="pb-16">
+      {sortedProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          dateRange={formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing)}
+          location={project.data.location}
+          tags={project.data.tags}
+          image={project.data.image}
+          description={project.data.description}
+          slug={project.slug}
+        />
+      ))}
+    </main>
+  </div>
+</Layout>
