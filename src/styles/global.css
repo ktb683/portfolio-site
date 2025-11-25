@@ -3,12 +3,12 @@
 /* Custom theme configuration */
 @theme {
   /* Dark purple background colors */
-  --color-bg-primary: #5c5470;
+  --color-bg-primary: #3B3543;
   --color-bg-dark: #4a4458;
   --color-bg-darker: #3d3850;
   
   /* Teal accent colors */
-  --color-accent-400: #2dd4bf;
+  --color-accent-400: #24C29D;
   --color-accent-500: #14b8a6;
   --color-accent-600: #0d9488;
   
