@@ -138,15 +138,96 @@ import Header from '@components/Header.astro';
           <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
             Skills
           </h2>
-          <ul class="space-y-2 text-sm text-text-secondary list-disc list-inside">
-            <li>Adobe Creative Cloud, Microsoft Office Suite, Arduino, video and audio editing, Clojure, HTML/CSS/JS, Git, AWS, Jira, Figma</li>
-            <li>Video, audio, and lighting equipment operation and setup: video cameras, projectors, screens, video switchers, microphones, mixers, amps, and speakers</li>
-            <li>Strong problem solving skills, adaptability, and technical troubleshooting</li>
-            <li>Rapidly absorb new information and acquire skills</li>
-            <li>High organization skill and ability to work across many platforms</li>
-            <li>Leadership ability, strong communication, and critical thinking skills</li>
-            <li>Event production experience and operational mindset</li>
-          </ul>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
+                Software &amp; Programming
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {['Clojure', 'HTML', 'CSS', 'JavaScript', 'Git', 'AWS', 'Jira', 'Arduino'].map((skill) => (
+                  <span class="text-accent text-xs border border-accent px-3 py-1">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
+                Design &amp; Media Tools
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {['Adobe Creative Cloud', 'Figma', 'Video editing', 'Audio editing', 'Microsoft Office Suite'].map((skill) => (
+                  <span class="text-accent text-xs border border-accent px-3 py-1">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
+                Production &amp; Equipment
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {[
+                  'Video cameras',
+                  'Projectors',
+                  'Screens',
+                  'Video switchers',
+                  'Microphones',
+                  'Mixers',
+                  'Amps',
+                  'Speakers',
+                  'Lighting equipment setup',
+                ].map((skill) => (
+                  <span class="text-accent text-xs border border-accent px-3 py-1">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
+                Ways of Working
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {[
+                  'Problem solving',
+                  'Adaptability',
+                  'Technical troubleshooting',
+                  'Rapid learning',
+                  'Organization',
+                  'Working across many platforms',
+                  'Critical thinking',
+                  'Communication',
+                ].map((skill) => (
+                  <span class="text-accent text-xs border border-accent px-3 py-1">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
+                Leadership &amp; Events
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {[
+                  'Leadership',
+                  'Strong communication',
+                  'Event production',
+                  'Operational mindset',
+                ].map((skill) => (
+                  <span class="text-accent text-xs border border-accent px-3 py-1">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </main>
