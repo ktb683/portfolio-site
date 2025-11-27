@@ -1,5 +1,6 @@
 ---
 title: 'VOIMAT'
+slug: 'voimat'
 description: 'A large hanging origami sculpture shaped by tension and gravity, exploring contrasts between lightness and heaviness, man-made and natural, geometric and organic.'
 startDate: 2023-01-01
 ongoing: false

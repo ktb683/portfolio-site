@@ -1,5 +1,6 @@
 ---
 title: 'AVOCADO BOATS'
+slug: 'avocado-boats'
 description: 'A series of 3D printed floating planters designed to hold avocado pits above water, accompanied by a hand-drawn instructional zine.'
 startDate: 2024-01-01
 ongoing: false

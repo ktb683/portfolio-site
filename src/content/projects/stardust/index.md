@@ -1,5 +1,6 @@
 ---
 title: 'STARDUST'
+slug: 'stardust'
 description: 'A space-themed 3–4 player strategy board game with 3D printed and lasercut components, featuring a rotating center board that mimics orbits in space.'
 startDate: 2014-01-01
 ongoing: false

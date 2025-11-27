@@ -1,5 +1,6 @@
 ---
 title: 'KALEIDO'
+slug: 'kaleido'
 description: 'An interactive kaleidoscope installation using 3D printed components, electronics, and custom code to create mesmerizing visual patterns.'
 startDate: 2024-01-01
 ongoing: true

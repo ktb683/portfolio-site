@@ -1,5 +1,6 @@
 ---
 title: 'STRANDED FOUNDATIONS'
+slug: 'stranded-foundations'
 description: 'A collaborative mural whose design is generated from custom code, inspired by natural formations like wood grain, topographical maps, and ripples on water.'
 startDate: 2021-01-01
 ongoing: false
