@@ -6,8 +6,9 @@ startDate: 2024-01-01
 ongoing: true
 location: 'Helsinki, FI'
 tags: ['3Dprint', 'electronics', 'code', 'installation']
-image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop'
-images: []
+image: 'kaleido-entropy.jpg'
+images:
+  - 'kaleido-hiap.png'
 featured: true
 ---
 

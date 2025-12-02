@@ -6,8 +6,12 @@ startDate: 2024-01-01
 ongoing: false
 location: 'Helsinki, FI'
 tags: ['3Dprint', 'CAD', 'plants']
-image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop'
-images: []
+image: 'avoboat.jpg'
+images:
+  - 'avocado.jpg'
+  - 'avo-biggest.jpg'
+  - 'avo-boats.jpg'
+  - 'avo-plants.jpg'
 featured: false
 ---
 

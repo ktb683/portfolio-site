@@ -7,10 +7,9 @@ endDate: 2023-01-01
 ongoing: false
 location: 'Helsinki, FI'
 tags: ['code', 'interactive', 'installation']
-image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop'
+image: 'pondering.jpg'
 images:
-  - 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop'
-  - 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=400&fit=crop'
+  - 'pondering2.png'
 featured: true
 videoLink: 'https://youtu.be/5iFtU8yIvaE'
 ---

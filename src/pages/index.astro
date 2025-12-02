@@ -1,7 +1,7 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import Header from '@components/Header.astro';
-import ProjectCard from '@components/ProjectCard.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 // Get all projects sorted by date
@@ -9,6 +9,8 @@ const projects = await getCollection('projects');
 const sortedProjects = projects.sort((a, b) => {
   return b.data.startDate.getTime() - a.data.startDate.getTime();
 });
+
+const heroProject = sortedProjects.find((project) => project.data.featured) ?? sortedProjects[0];
 
 // Helper function to format date range
 function formatDateRange(startDate: Date, endDate?: Date, ongoing?: boolean): string {
@@ -22,6 +24,32 @@ function formatDateRange(startDate: Date, endDate?: Date, ongoing?: boolean): st
   }
   return `${startYear}`;
 }
+
+const imageModules = import.meta.glob('../content/projects/*/*.{png,jpg,jpeg,gif,webp}', {
+  eager: true,
+  as: 'url',
+}) as Record<string, string>;
+
+const projectImageMap: Record<string, string> = {};
+
+for (const [path, url] of Object.entries(imageModules)) {
+  const parts = path.split('/');
+  const slug = parts[parts.length - 2];
+  const filename = parts[parts.length - 1];
+  projectImageMap[`${slug}/${filename}`] = url;
+}
+
+type ProjectEntry = (typeof projects)[number];
+
+function getProjectFolder(project: ProjectEntry): string {
+  return project.id.split('/')[0];
+}
+
+function getProjectImageUrl(project: ProjectEntry): string {
+  const key = `${getProjectFolder(project)}/${project.data.image}`;
+  return projectImageMap[key] ?? '';
+}
+
 ---
 
 <Layout title="Katie Ballinger | Works" description="Portfolio of creative works by Katie Ballinger">
@@ -29,13 +57,42 @@ function formatDateRange(startDate: Date, endDate?: Date, ongoing?: boolean): st
     <Header />
     
     <main class="pb-16">
+      {heroProject && (
+        <section class="px-8 pt-4 pb-10">
+          <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(220px,360px)_1fr] gap-8 items-start">
+            <div class="border-4 border-border overflow-hidden bg-bg-darker/60">
+              <img
+                src={getProjectImageUrl(heroProject)}
+                alt={heroProject.data.title}
+                class="w-full h-full max-h-[360px] object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="space-y-3">
+              <p class="text-xs tracking-[0.25em] text-text-secondary uppercase">Featured Work</p>
+              <h1 class="text-2xl tracking-[0.2em] font-normal text-accent uppercase">
+                {heroProject.data.title}
+              </h1>
+              <p class="text-text-secondary text-sm max-w-xl">
+                {heroProject.data.description}
+              </p>
+              <a
+                href={`/projects/${heroProject.slug}`}
+                class="inline-block text-accent text-xs underline underline-offset-2 hover:opacity-80 transition-opacity mt-2"
+              >
+                View project
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
       {sortedProjects.map((project) => (
         <ProjectCard
           title={project.data.title}
           dateRange={formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing)}
           location={project.data.location}
           tags={project.data.tags}
-          image={project.data.image}
+          image={getProjectImageUrl(project)}
           description={project.data.description}
           slug={project.slug}
         />

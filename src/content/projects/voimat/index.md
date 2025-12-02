@@ -6,7 +6,7 @@ startDate: 2023-01-01
 ongoing: false
 location: 'Helsinki, FI'
 tags: ['origami', 'sculpture', 'installation']
-image: 'https://images.unsplash.com/photo-1526498460520-4c246339dccb?w=600&h=400&fit=crop'
+image: 'VOIMAT.jpg'
 images: []
 featured: false
 ---

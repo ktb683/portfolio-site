@@ -29,6 +29,23 @@ function formatDateRange(startDate: Date, endDate?: Date, ongoing?: boolean): st
 
 const dateRange = formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing);
 const allImages = [project.data.image, ...project.data.images].filter(Boolean);
+
+const imageModules = import.meta.glob('../../content/projects/*/*.{png,jpg,jpeg,gif,webp}', {
+  eager: true,
+  as: 'url',
+}) as Record<string, string>;
+
+const projectImageMap: Record<string, string> = {};
+
+for (const [path, url] of Object.entries(imageModules)) {
+  const parts = path.split('/');
+  const slug = parts[parts.length - 2];
+  const filename = parts[parts.length - 1];
+  projectImageMap[`${slug}/${filename}`] = url;
+}
+const folder = project.id.split('/')[0];
+const imageUrls = allImages.map((img) => projectImageMap[`${folder}/${img}`] ?? '');
+
 ---
 
 <Layout title={`${project.data.title} | Katie Ballinger`} description={project.data.description}>
@@ -45,7 +62,7 @@ const allImages = [project.data.image, ...project.data.images].filter(Boolean);
               {allImages[0] && (
                 <div class="border-4 border-border overflow-hidden">
                   <img 
-                    src={allImages[0]} 
+                    src={imageUrls[0]} 
                     alt={project.data.title}
                     class="w-full h-auto object-cover"
                   />
@@ -72,7 +89,7 @@ const allImages = [project.data.image, ...project.data.images].filter(Boolean);
                 <div class="lg:w-1/2">
                   <div class="border-4 border-border overflow-hidden">
                     <img 
-                      src={allImages[1]} 
+                      src={imageUrls[1]} 
                       alt={`${project.data.title} - secondary`}
                       class="w-full h-auto object-cover"
                     />
@@ -102,10 +119,10 @@ const allImages = [project.data.image, ...project.data.images].filter(Boolean);
           <!-- Additional images -->
           {allImages.length > 2 && (
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-              {allImages.slice(2).map((img: string, i: number) => (
+              {imageUrls.slice(2).map((url, i) => (
                 <div class="border-4 border-border overflow-hidden">
                   <img 
-                    src={img} 
+                    src={url} 
                     alt={`${project.data.title} - image ${i + 3}`}
                     class="w-full h-auto object-cover"
                   />

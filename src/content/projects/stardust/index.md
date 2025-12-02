@@ -6,7 +6,7 @@ startDate: 2014-01-01
 ongoing: false
 location: 'Toronto, CA'
 tags: ['boardgame', '3Dprint', 'lasercut']
-image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=600&h=400&fit=crop'
+image: 'stardust.jpg'
 images: []
 featured: false
 ---
