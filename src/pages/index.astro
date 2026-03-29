@@ -10,8 +10,6 @@ const sortedProjects = projects.sort((a, b) => {
   return b.data.startDate.getTime() - a.data.startDate.getTime();
 });
 
-const heroProject = sortedProjects.find((project) => project.data.featured) ?? sortedProjects[0];
-
 // Helper function to format date range
 function formatDateRange(startDate: Date, endDate?: Date, ongoing?: boolean): string {
   const startYear = startDate.getFullYear();
@@ -46,7 +44,8 @@ function getProjectFolder(project: ProjectEntry): string {
 }
 
 function getProjectImageUrl(project: ProjectEntry): string {
-  const key = `${getProjectFolder(project)}/${project.data.image}`;
+  const filename = project.data.image.replace(/^\.\//, '');
+  const key = `${getProjectFolder(project)}/${filename}`;
   return projectImageMap[key] ?? '';
 }
 
@@ -57,46 +56,69 @@ function getProjectImageUrl(project: ProjectEntry): string {
     <Header />
     
     <main class="pb-16">
-      {heroProject && (
-        <section class="px-8 pt-4 pb-10">
-          <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(220px,360px)_1fr] gap-8 items-start">
-            <div class="border-4 border-border overflow-hidden bg-bg-darker/60">
+      <!-- View toggle -->
+      <div class="flex justify-end px-4 md:px-8 pt-6 pb-2 max-w-6xl mx-auto">
+        <div class="flex gap-3 text-xs tracking-widest uppercase text-text-secondary">
+          <button id="view-large" class="view-toggle hover:text-accent transition-colors" aria-pressed="true">Large</button>
+          <span class="opacity-30">|</span>
+          <button id="view-small" class="view-toggle hover:text-accent transition-colors" aria-pressed="false">Small</button>
+        </div>
+      </div>
+
+      <!-- Large view -->
+      <div id="large-view">
+        {sortedProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            dateRange={formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing)}
+            location={project.data.location}
+            tags={project.data.tags}
+            image={getProjectImageUrl(project)}
+            description={project.data.description}
+            slug={project.slug}
+          />
+        ))}
+      </div>
+
+      <!-- Small view -->
+      <div id="small-view" class="hidden px-4 md:px-8 pt-4 max-w-6xl mx-auto">
+        <div class="flex flex-wrap gap-2">
+          {sortedProjects.map((project) => (
+            <a href={`/projects/${project.slug}`} class="block hover:opacity-70 transition-opacity border border-[#6b6580] p-2" style="background-color: rgba(61, 56, 80, 0.3);">
               <img
-                src={getProjectImageUrl(heroProject)}
-                alt={heroProject.data.title}
-                class="w-full h-full max-h-[360px] object-cover"
+                src={getProjectImageUrl(project)}
+                alt={project.data.title}
+                class="w-[100px] h-[100px] object-cover"
                 loading="lazy"
               />
-            </div>
-            <div class="space-y-3">
-              <p class="text-xs tracking-[0.25em] text-text-secondary uppercase">Featured Work</p>
-              <h1 class="text-2xl tracking-[0.2em] font-normal text-accent uppercase">
-                {heroProject.data.title}
-              </h1>
-              <p class="text-text-secondary text-sm max-w-xl">
-                {heroProject.data.description}
-              </p>
-              <a
-                href={`/projects/${heroProject.slug}`}
-                class="inline-block text-accent text-xs underline underline-offset-2 hover:opacity-80 transition-opacity mt-2"
-              >
-                View project
-              </a>
-            </div>
-          </div>
-        </section>
-      )}
-      {sortedProjects.map((project) => (
-        <ProjectCard
-          title={project.data.title}
-          dateRange={formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing)}
-          location={project.data.location}
-          tags={project.data.tags}
-          image={getProjectImageUrl(project)}
-          description={project.data.description}
-          slug={project.slug}
-        />
-      ))}
+            </a>
+          ))}
+        </div>
+      </div>
     </main>
   </div>
 </Layout>
+
+<script>
+  const largeBtn = document.getElementById('view-large')!;
+  const smallBtn = document.getElementById('view-small')!;
+  const largeView = document.getElementById('large-view')!;
+  const smallView = document.getElementById('small-view')!;
+
+  const saved = localStorage.getItem('works-view');
+  if (saved === 'small') setView('small');
+
+  largeBtn.addEventListener('click', () => setView('large'));
+  smallBtn.addEventListener('click', () => setView('small'));
+
+  function setView(view: 'large' | 'small') {
+    const isLarge = view === 'large';
+    largeView.classList.toggle('hidden', !isLarge);
+    smallView.classList.toggle('hidden', isLarge);
+    largeBtn.setAttribute('aria-pressed', String(isLarge));
+    smallBtn.setAttribute('aria-pressed', String(!isLarge));
+    largeBtn.classList.toggle('text-accent', isLarge);
+    smallBtn.classList.toggle('text-accent', !isLarge);
+    localStorage.setItem('works-view', view);
+  }
+</script>

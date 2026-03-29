@@ -6,8 +6,8 @@ startDate: 2021-01-01
 ongoing: false
 location: 'Helsinki, FI'
 tags: ['mural', 'code', 'acrylic']
-image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop'
-images: []
+image: './mural.png'
+images: ['./mural.png']
 featured: false
 ---
 

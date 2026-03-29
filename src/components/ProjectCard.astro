@@ -14,7 +14,7 @@ const { title, dateRange, location, tags, image, description, link, slug } = Ast
 ---
 
 <article class="py-16">
-  <div class="max-w-6xl mx-auto px-8">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-[minmax(200px,380px)_1fr] gap-8 lg:gap-12">
       <!-- Project Info - Left Column -->
       <div class="flex flex-col">
@@ -40,7 +40,7 @@ const { title, dateRange, location, tags, image, description, link, slug } = Ast
         
         <!-- Description at bottom -->
         {description && (
-          <p class="text-text-secondary text-sm leading-relaxed mt-auto pt-8 text-justify max-w-sm">
+          <p class="text-text-secondary text-sm leading-relaxed mt-auto pt-8 text-center md:text-center lg:text-justify max-w-sm mx-auto lg:mx-0">
             {description}
           </p>
         )}
@@ -58,11 +58,11 @@ const { title, dateRange, location, tags, image, description, link, slug } = Ast
       
       <!-- Project Image - Right Column with frame effect -->
       <div class="flex items-start justify-center lg:justify-end">
-        <div class="border border-[#6b6580] p-2 overflow-hidden max-h-[360px]" style="background-color: rgba(61, 56, 80, 0.3);">
-          <img 
-            src={image} 
+        <div class="border border-[#6b6580] p-2 overflow-hidden w-full lg:w-[560px]" style="background-color: rgba(61, 56, 80, 0.3);">
+          <img
+            src={image}
             alt={title}
-            class="w-full max-w-xl h-auto object-cover"
+            class="w-full lg:w-[556px] h-[240px] lg:h-[360px] object-cover"
             loading="lazy"
           />
         </div>
