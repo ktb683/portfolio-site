@@ -75,7 +75,7 @@ function getProjectImageUrl(project: ProjectEntry): string {
             tags={project.data.tags}
             image={getProjectImageUrl(project)}
             description={project.data.description}
-            slug={project.slug}
+            slug={project.id.replace('/index.md', '')}
           />
         ))}
       </div>
@@ -84,7 +84,7 @@ function getProjectImageUrl(project: ProjectEntry): string {
       <div id="small-view" class="hidden px-4 md:px-8 pt-4 max-w-6xl mx-auto">
         <div class="flex flex-wrap gap-2">
           {sortedProjects.map((project) => (
-            <a href={`/projects/${project.slug}`} class="block hover:opacity-70 transition-opacity border border-[#6b6580] p-2" style="background-color: rgba(61, 56, 80, 0.3);">
+            <a href={`/projects/${project.id.replace('/index.md', '')}`} class="block hover:opacity-70 transition-opacity border border-[#6b6580] p-2" style="background-color: rgba(61, 56, 80, 0.3);">
               <img
                 src={getProjectImageUrl(project)}
                 alt={project.data.title}
