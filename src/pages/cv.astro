@@ -1,229 +1,76 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.astro';
+import CreativeCV from '@components/cv/CreativeCV.astro';
+import ProducerCV from '@components/cv/ProducerCV.astro';
+import SoftwareCV from '@components/cv/SoftwareCV.astro';
 ---
 
 <Layout title="CV | Katie Ballinger" description="Curriculum Vitae of Katie Ballinger">
   <div class="min-h-screen">
     <Header />
-    
+
     <main class="py-16">
       <div class="max-w-4xl mx-auto px-4 md:px-8">
-        <h1 class="text-3xl tracking-[0.15em] font-normal text-accent uppercase mb-12">
-          CV
-        </h1>
-        
-        <!-- Experience -->
-        <section class="mb-12">
-          <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
-            Experience
-          </h2>
-          <div class="space-y-8">
-            <div>
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
-                <div>
-                  <p class="text-text-primary">Technical Project Worker</p>
-                  <p class="text-text-secondary text-sm">Aalto University — Espoo, FI</p>
-                </div>
-                <p class="text-text-secondary text-sm mt-1 sm:mt-0">Feb 2025–Present</p>
-              </div>
-              <p class="text-sm text-text-secondary mt-2">
-                Field work involving drone videography and 3D scanning. Video and audio editing to produce content for interactive exhibitions, as well as social media.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
-                <div>
-                  <p class="text-text-primary">Chair / Board Member</p>
-                  <p class="text-text-secondary text-sm">Kipsari Restaurant — Espoo, FI</p>
-                </div>
-                <p class="text-text-secondary text-sm mt-1 sm:mt-0">Apr 2024–Present</p>
-              </div>
-              <p class="text-sm text-text-secondary mt-2">
-                Guide the board on making decisions for the direction of the restaurant, manage projects, handle official administrative duties, and meet with restaurant staff on a regular basis.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
-                <div>
-                  <p class="text-text-primary">Graphic Designer</p>
-                  <p class="text-text-secondary text-sm">Aalto University — Espoo, FI</p>
-                </div>
-                <p class="text-text-secondary text-sm mt-1 sm:mt-0">Dec 2024–Jul 2025</p>
-              </div>
-              <p class="text-sm text-text-secondary mt-2">
-                Designed 80+ informational posters for Aalto Studios to unify and showcase work spaces and technology available, in collaboration with colleagues through an iterative design process.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
-                <div>
-                  <p class="text-text-primary">Exhibition Assistant</p>
-                  <p class="text-text-secondary text-sm">ARTS Infra – Aalto University — Espoo, FI</p>
-                </div>
-                <p class="text-text-secondary text-sm mt-1 sm:mt-0">2023</p>
-              </div>
-              <p class="text-sm text-text-secondary mt-2">
-                Provided support to students and faculty using exhibition spaces at Aalto University including setup of lighting and equipment, and operation of a scissor lift.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
-                <div>
-                  <p class="text-text-primary">Executive Assistant to CTO</p>
-                  <p class="text-text-secondary text-sm">Code in Chaos — Toronto, CA</p>
-                </div>
-                <p class="text-text-secondary text-sm mt-1 sm:mt-0">2021–2022</p>
-              </div>
-              <p class="text-sm text-text-secondary mt-2">
-                Worked on administrative tasks across several companies including tax filings, scheduling, and payroll.
-              </p>
-            </div>
-
-            <div>
-              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
-                <div>
-                  <p class="text-text-primary">Software Engineer</p>
-                  <p class="text-text-secondary text-sm">Funding Circle — San Francisco, US</p>
-                </div>
-                <p class="text-text-secondary text-sm mt-1 sm:mt-0">2018–2020</p>
-              </div>
-              <p class="text-sm text-text-secondary mt-2">
-                Programmed in Clojure on frontend and backend systems and hosted local monthly Clojure meetups for knowledge sharing, community building, and recruitment.
-              </p>
-            </div>
+        <div class="flex items-center justify-between mb-12">
+          <h1 id="cv-title" class="text-3xl tracking-[0.15em] font-normal text-accent uppercase transition-opacity duration-300">
+            CV
+          </h1>
+          <div class="flex gap-3 text-xs tracking-widest uppercase text-text-secondary">
+            <button id="cv-creative" class="cv-toggle hover:text-accent transition-colors" aria-pressed="false">Creative</button>
+            <span class="opacity-30">|</span>
+            <button id="cv-producer" class="cv-toggle hover:text-accent transition-colors" aria-pressed="false">Producer</button>
+            <span class="opacity-30">|</span>
+            <button id="cv-engineer" class="cv-toggle hover:text-accent transition-colors" aria-pressed="false">Software</button>
           </div>
-        </section>
+        </div>
 
-        <!-- Education -->
-        <section class="mb-12">
-          <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
-            Education
-          </h2>
-          <div class="space-y-4">
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
-              <div>
-                <p class="text-text-primary">MA New Media</p>
-                <p class="text-text-secondary text-sm">Aalto University — Espoo, FI</p>
-              </div>
-              <p class="text-text-secondary text-sm mt-1 sm:mt-0">Aalto University</p>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
-              <div>
-                <p class="text-text-primary">BFA Digital Futures</p>
-                <p class="text-text-secondary text-sm">OCAD University — Toronto, CA</p>
-              </div>
-              <p class="text-text-secondary text-sm mt-1 sm:mt-0">OCAD University</p>
-            </div>
-          </div>
-        </section>
+        <!-- Prompt -->
+        <div id="cv-prompt" class="flex flex-col items-end py-10 gap-4">
+          <svg class="w-6 h-6 text-text-secondary animate-bounce" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+          </svg>
+          <p class="text-2xl tracking-[0.15em] text-text-secondary text-right">Who do you want me to be?</p>
+        </div>
 
-        <!-- Languages -->
-        <section class="mb-12">
-          <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
-            Languages
-          </h2>
-          <div class="space-y-2">
-            <p class="text-text-primary">English <span class="text-text-secondary text-sm">(Native speaker)</span></p>
-            <p class="text-text-primary">Finnish <span class="text-text-secondary text-sm">(A2)</span></p>
-          </div>
-        </section>
+        <div id="view-creative" class="hidden"><CreativeCV /></div>
+        <div id="view-producer" class="hidden"><ProducerCV /></div>
+        <div id="view-engineer" class="hidden"><SoftwareCV /></div>
 
-        <!-- Skills -->
-        <section class="mb-12">
-          <h2 class="text-lg tracking-[0.1em] text-accent uppercase mb-6 border-b border-border pb-2">
-            Skills
-          </h2>
-          <div class="space-y-6">
-            <div>
-              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
-                Software &amp; Programming
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {['Clojure', 'HTML/CSS', 'JavaScript', 'Git', 'AWS', 'Jira', 'Arduino'].map((skill) => (
-                  <span class="text-accent text-xs border border-accent px-3 py-1">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
-                Design &amp; Media Tools
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {['Adobe CC', 'Figma', 'Video editing', 'Audio editing'].map((skill) => (
-                  <span class="text-accent text-xs border border-accent px-3 py-1">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
-                Production &amp; Equipment
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {[
-                  'Video cameras',
-                  'Projectors',
-                  'Livestream',
-                  'Audio equipment',
-                  'Lighting',
-                ].map((skill) => (
-                  <span class="text-accent text-xs border border-accent px-3 py-1">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
-                Ways of Working
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {[
-                  'Problem solving',
-                  'Adaptability',
-                  'Technical troubleshooting',
-                  'Rapid learning',
-                  'Organization',
-                  'Critical thinking',
-                ].map((skill) => (
-                  <span class="text-accent text-xs border border-accent px-3 py-1">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-[0.7rem] tracking-[0.2em] uppercase text-text-secondary mb-2">
-                Leadership &amp; Events
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {[
-                  'Team coordination',
-                  'Communication',
-                  'Event production',
-                  'Operational planning',
-                ].map((skill) => (
-                  <span class="text-accent text-xs border border-accent px-3 py-1">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </main>
   </div>
 </Layout>
+
+<script>
+  const prompt = document.getElementById('cv-prompt')!;
+  const title = document.getElementById('cv-title')!;
+  const buttons = {
+    creative: document.getElementById('cv-creative')!,
+    producer: document.getElementById('cv-producer')!,
+    engineer: document.getElementById('cv-engineer')!,
+  };
+  const views = {
+    creative: document.getElementById('view-creative')!,
+    producer: document.getElementById('view-producer')!,
+    engineer: document.getElementById('view-engineer')!,
+  };
+
+  Object.entries(buttons).forEach(([key, btn]) => {
+    btn.addEventListener('click', () => setView(key as keyof typeof views));
+  });
+
+  function setView(view: keyof typeof views) {
+    prompt.classList.add('hidden');
+    title.textContent = 'CV';
+
+    Object.entries(views).forEach(([key, el]) => {
+      el.classList.toggle('hidden', key !== view);
+    });
+    Object.entries(buttons).forEach(([key, btn]) => {
+      const active = key === view;
+      btn.setAttribute('aria-pressed', String(active));
+      btn.classList.toggle('text-accent', active);
+    });
+  }
+</script>
