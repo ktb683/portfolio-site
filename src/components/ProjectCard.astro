@@ -59,12 +59,23 @@ const { title, dateRange, location, tags, image, description, link, slug } = Ast
       <!-- Project Image - Right Column with frame effect -->
       <div class="flex items-start justify-center lg:justify-end">
         <div class="border border-[#6b6580] p-2 overflow-hidden w-full lg:w-[560px]" style="background-color: rgba(61, 56, 80, 0.3);">
-          <img
-            src={image}
-            alt={title}
-            class="w-full lg:w-[556px] h-[240px] lg:h-[360px] object-cover"
-            loading="lazy"
-          />
+          {slug ? (
+            <a href={`/projects/${slug}`} class="block hover:opacity-80 transition-opacity">
+              <img
+                src={image}
+                alt={title}
+                class="w-full lg:w-[556px] h-[240px] lg:h-[360px] object-cover"
+                loading="lazy"
+              />
+            </a>
+          ) : (
+            <img
+              src={image}
+              alt={title}
+              class="w-full lg:w-[556px] h-[240px] lg:h-[360px] object-cover"
+              loading="lazy"
+            />
+          )}
         </div>
       </div>
     </div>
