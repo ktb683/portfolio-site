@@ -1,10 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   title: string;
   dateRange: string;
   location: string;
   tags: string[];
-  image: string;
+  image: ImageMetadata;
   description?: string;
   link?: string;
   slug?: string;
@@ -61,17 +64,21 @@ const { title, dateRange, location, tags, image, description, link, slug } = Ast
         <div class="border border-[#6b6580] p-2 overflow-hidden w-full lg:w-[560px]" style="background-color: rgba(61, 56, 80, 0.3);">
           {slug ? (
             <a href={`/projects/${slug}`} class="block hover:opacity-80 transition-opacity">
-              <img
+              <Image
                 src={image}
                 alt={title}
+                width={556}
+                height={360}
                 class="w-full lg:w-[556px] h-[240px] lg:h-[360px] object-cover"
                 loading="lazy"
               />
             </a>
           ) : (
-            <img
+            <Image
               src={image}
               alt={title}
+              width={556}
+              height={360}
               class="w-full lg:w-[556px] h-[240px] lg:h-[360px] object-cover"
               loading="lazy"
             />
