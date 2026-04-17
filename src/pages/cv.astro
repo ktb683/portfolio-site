@@ -1,9 +1,10 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.astro';
-import CreativeCV from '@components/cv/CreativeCV.astro';
-import ProducerCV from '@components/cv/ProducerCV.astro';
-import SoftwareCV from '@components/cv/SoftwareCV.astro';
+// CV components kept but hidden for now:
+// import CreativeCV from '@components/cv/CreativeCV.astro';
+// import ProducerCV from '@components/cv/ProducerCV.astro';
+// import SoftwareCV from '@components/cv/SoftwareCV.astro';
 ---
 
 <Layout title="CV | Katie Ballinger" description="Curriculum Vitae of Katie Ballinger">
@@ -12,55 +13,189 @@ import SoftwareCV from '@components/cv/SoftwareCV.astro';
 
     <main class="py-16">
       <div class="max-w-4xl mx-auto px-4 md:px-8">
-        <div class="flex items-center justify-between mb-12">
-          <h1 id="cv-title" class="text-3xl tracking-[0.15em] font-normal text-accent uppercase transition-opacity duration-300">
-            CV
-          </h1>
-          <div class="flex gap-3 text-xs tracking-widest uppercase text-text-secondary">
-            <button id="cv-creative" class="cv-toggle hover:text-accent transition-colors" aria-pressed="false">Creative</button>
-            <span class="opacity-30">|</span>
-            <button id="cv-producer" class="cv-toggle hover:text-accent transition-colors" aria-pressed="false">Producer</button>
-            <span class="opacity-30">|</span>
-            <button id="cv-engineer" class="cv-toggle hover:text-accent transition-colors" aria-pressed="false">Software</button>
-          </div>
-        </div>
 
-        <div id="view-creative" class="hidden"><CreativeCV /></div>
-        <div id="view-producer" class="hidden"><ProducerCV /></div>
-        <div id="view-engineer" class="hidden"><SoftwareCV /></div>
+        <div class="flex items-start justify-between mb-2">
+          <h1 class="text-3xl tracking-[0.15em] font-normal text-accent uppercase">CV</h1>
+          <a
+            href="/Resume_DF_2026.pdf"
+            download
+            class="flex items-center gap-2 text-xs tracking-widest uppercase text-text-secondary border border-[#6b6580] px-3 py-1.5 hover:text-accent hover:border-accent transition-colors"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+            </svg>
+            Download
+          </a>
+        </div>
+        <p class="text-text-secondary text-xs tracking-widest uppercase mb-10">Creative Technologist</p>
+
+        <!-- Summary -->
+        <section class="mb-10">
+          <h2 class="text-sm tracking-widest uppercase text-accent border-b border-[#6b6580] pb-1 mb-4">Summary</h2>
+          <p class="text-text-secondary text-sm leading-relaxed">
+            New media artist and digital fabrication specialist with 15 years of experience in 3D printing and laser cutting. Combines technical knowledge with a passion for experimentation, learning, and teaching others. Comfortable guiding users in workshop environments and helping translate ideas into physical outcomes.
+          </p>
+        </section>
+
+        <!-- Experience -->
+        <section class="mb-10">
+          <h2 class="text-sm tracking-widest uppercase text-accent border-b border-[#6b6580] pb-1 mb-6">Experience</h2>
+          <div class="space-y-8">
+
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-text-primary">Technical Project Worker</p>
+                  <p class="text-text-secondary text-sm">Aalto University — Espoo, FI — <a href="https://aalto.fi" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">aalto.fi</a></p>
+                </div>
+                <p class="text-text-secondary text-sm mt-1 sm:mt-0 sm:shrink-0">Feb 2025 – Present</p>
+              </div>
+              <p class="text-sm text-text-secondary mt-2">Field work with drone videography and 3D scanning. Video and audio editing to produce content for several immersive AR exhibitions.</p>
+            </div>
+
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-text-primary">Graphic Designer</p>
+                  <p class="text-text-secondary text-sm">Aalto University — Espoo, FI — <a href="https://studios.aalto.fi" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">studios.aalto.fi</a></p>
+                </div>
+                <p class="text-text-secondary text-sm mt-1 sm:mt-0 sm:shrink-0">Dec 2024 – Jul 2025</p>
+              </div>
+              <p class="text-sm text-text-secondary mt-2">Designed 80+ informational posters for Aalto Studios to unify and showcase work spaces and technology available. Collaborated with colleagues through an iterative design process.</p>
+            </div>
+
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-text-primary">Exhibition Assistant</p>
+                  <p class="text-text-secondary text-sm">ARTS Infra – Aalto University — Espoo, FI — <a href="https://aalto.fi" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">aalto.fi</a></p>
+                </div>
+                <p class="text-text-secondary text-sm mt-1 sm:mt-0 sm:shrink-0">Jan 2023 – Dec 2023</p>
+              </div>
+              <p class="text-sm text-text-secondary mt-2">Provided support to students and faculty using exhibition spaces at Aalto University including setup of lighting & equipment, and operation of scissor lift.</p>
+            </div>
+
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-text-primary">Technical Assistant</p>
+                  <p class="text-text-secondary text-sm">FabLab, Aalto — Espoo, FI — <a href="https://fablab.aalto.fi" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">fablab.aalto.fi</a></p>
+                </div>
+                <p class="text-text-secondary text-sm mt-1 sm:mt-0 sm:shrink-0">Feb 2022 – Jun 2022</p>
+              </div>
+              <p class="text-sm text-text-secondary mt-2">Opened workshop on weekends, provided introductory training for various machines and guidance to students in the workshop.</p>
+            </div>
+
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-text-primary">Software Engineer</p>
+                  <p class="text-text-secondary text-sm">Funding Circle — San Francisco, US — <a href="https://fundingcircle.com" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">fundingcircle.com</a></p>
+                </div>
+                <p class="text-text-secondary text-sm mt-1 sm:mt-0 sm:shrink-0">Jun 2018 – Sep 2020</p>
+              </div>
+              <p class="text-sm text-text-secondary mt-2">Developed features for several Clojure applications. Hosted Clojure meetups.</p>
+            </div>
+
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-text-primary">Software Engineer</p>
+                  <p class="text-text-secondary text-sm">CircleCI — Remote / Toronto / San Francisco — <a href="https://circleci.com" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">circleci.com</a></p>
+                </div>
+                <p class="text-text-secondary text-sm mt-1 sm:mt-0 sm:shrink-0">Feb 2017 – Aug 2017</p>
+              </div>
+              <p class="text-sm text-text-secondary mt-2">Collaborated with a diverse and distributed team, remotely and asynchronously.</p>
+            </div>
+
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-text-primary">Site Reliability Engineer</p>
+                  <p class="text-text-secondary text-sm">CircleCI — Remote / Toronto / San Francisco — <a href="https://circleci.com" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">circleci.com</a></p>
+                </div>
+                <p class="text-text-secondary text-sm mt-1 sm:mt-0 sm:shrink-0">May 2015 – Apr 2017</p>
+              </div>
+              <p class="text-sm text-text-secondary mt-2">On call responder, created runbooks for faster outage response.</p>
+            </div>
+
+            <div>
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+                <div>
+                  <p class="text-text-primary">Instructor</p>
+                  <p class="text-text-secondary text-sm">MakerKids — Toronto, CA — <a href="https://makerkids.com" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">makerkids.com</a></p>
+                </div>
+                <p class="text-text-secondary text-sm mt-1 sm:mt-0 sm:shrink-0">2014</p>
+              </div>
+              <p class="text-sm text-text-secondary mt-2">Taught kids aged 6–13 in project-based programs: 3D printing, laser cutting, woodworking, electronics, and programming.</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section class="mb-10">
+          <h2 class="text-sm tracking-widest uppercase text-accent border-b border-[#6b6580] pb-1 mb-6">Education</h2>
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+              <div>
+                <p class="text-text-primary">MA New Media</p>
+                <p class="text-text-secondary text-sm">Aalto University — Espoo, FI</p>
+              </div>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:gap-4">
+              <div>
+                <p class="text-text-primary">BFA Digital Futures</p>
+                <p class="text-text-secondary text-sm">OCAD University — Toronto, CA</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Languages -->
+        <section class="mb-10">
+          <h2 class="text-sm tracking-widest uppercase text-accent border-b border-[#6b6580] pb-1 mb-6">Languages</h2>
+          <div class="space-y-2">
+            <p class="text-text-primary">English <span class="text-text-secondary text-sm">(Native Speaker)</span></p>
+            <p class="text-text-primary">Finnish <span class="text-text-secondary text-sm">(A2)</span></p>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="mb-10">
+          <h2 class="text-sm tracking-widest uppercase text-accent border-b border-[#6b6580] pb-1 mb-4">Skills</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-xs tracking-widest uppercase text-text-secondary mb-2">Fabrication</h3>
+              <div class="flex flex-wrap gap-2">
+                {['3D Printing', 'Lasercutting', 'CAD', 'Prototyping', 'Electronics'].map((skill) => (
+                  <span class="text-accent text-xs border border-accent px-3 py-1">{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-xs tracking-widest uppercase text-text-secondary mb-2">Thinking</h3>
+              <div class="flex flex-wrap gap-2">
+                {['Problem Solving', 'Critical Thinking', 'Technical Troubleshooting', 'Systems Thinking'].map((skill) => (
+                  <span class="text-accent text-xs border border-accent px-3 py-1">{skill}</span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xs tracking-widest uppercase text-text-secondary mb-2">Execution & Work Style</h3>
+              <div class="flex flex-wrap gap-2">
+                {['Adaptable', 'Organized', 'Documentation', 'Attention to Detail'].map((skill) => (
+                  <span class="text-accent text-xs border border-accent px-3 py-1">{skill}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <p class="text-text-secondary text-xs">References available upon request.</p>
 
       </div>
     </main>
   </div>
 </Layout>
-
-<script>
-  const title = document.getElementById('cv-title')!;
-  const buttons = {
-    creative: document.getElementById('cv-creative')!,
-    producer: document.getElementById('cv-producer')!,
-    engineer: document.getElementById('cv-engineer')!,
-  };
-  const views = {
-    creative: document.getElementById('view-creative')!,
-    producer: document.getElementById('view-producer')!,
-    engineer: document.getElementById('view-engineer')!,
-  };
-
-  Object.entries(buttons).forEach(([key, btn]) => {
-    btn.addEventListener('click', () => setView(key as keyof typeof views));
-  });
-
-  function setView(view: keyof typeof views) {
-    title.textContent = 'CV';
-
-    Object.entries(views).forEach(([key, el]) => {
-      el.classList.toggle('hidden', key !== view);
-    });
-    Object.entries(buttons).forEach(([key, btn]) => {
-      const active = key === view;
-      btn.setAttribute('aria-pressed', String(active));
-      btn.classList.toggle('text-accent', active);
-    });
-  }
-</script>
