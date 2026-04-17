@@ -5,8 +5,8 @@ description: 'A series of 3D printed floating planters designed to hold avocado 
 startDate: 2024-01-01
 ongoing: false
 location: 'Helsinki, FI'
-tags: ['3Dprint', 'CAD', 'plants']
-image: 'avoboat.jpg'
+tags: ['3Dprint', 'CAD']
+image: 'avocado.jpg'
 images:
   - 'avocado.jpg'
   - 'avo-biggest.jpg'

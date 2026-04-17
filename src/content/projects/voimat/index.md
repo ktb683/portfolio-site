@@ -5,7 +5,7 @@ description: 'A large hanging origami sculpture shaped by tension and gravity, e
 startDate: 2023-01-01
 ongoing: false
 location: 'Helsinki, FI'
-tags: ['origami', 'sculpture', 'installation']
+tags: ['origami', 'CAD', 'installation']
 image: 'VOIMAT.jpg'
 images: []
 featured: false

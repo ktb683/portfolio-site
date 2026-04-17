@@ -5,7 +5,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 // Get all projects sorted by date
-const projects = await getCollection('projects');
+const projects = await getCollection('projects', ({ data }) => !data.draft);
 const sortedProjects = projects.sort((a, b) => {
   return b.data.startDate.getTime() - a.data.startDate.getTime();
 });
@@ -53,7 +53,7 @@ function getProjectImageUrl(project: ProjectEntry): string {
 
 ---
 
-<Layout title="Katie Ballinger | Works" description="Portfolio of creative works by Katie Ballinger">
+<Layout title="Katie Ballinger | Portfolio" description="Portfolio of creative works by Katie Ballinger">
   <div class="min-h-screen">
     <Header />
     
@@ -61,8 +61,8 @@ function getProjectImageUrl(project: ProjectEntry): string {
       <!-- Controls bar -->
       <div class="px-4 md:px-8 pt-6 pb-2 max-w-6xl mx-auto">
         <div class="flex items-center justify-between">
-          <!-- Tag filter -->
-          <div>
+          <!-- Tag filter (hidden) -->
+          <div class="hidden">
             <button id="tags-toggle" class="flex items-center gap-2 text-xs tracking-widest uppercase text-text-secondary hover:text-accent transition-colors">
               <span>Filter</span>
               <svg id="tags-arrow" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -72,12 +72,12 @@ function getProjectImageUrl(project: ProjectEntry): string {
           </div>
           <!-- View toggle -->
           <div class="flex gap-3 text-xs tracking-widest uppercase text-text-secondary">
-            <button id="view-large" class="view-toggle hover:text-accent transition-colors" aria-pressed="true">Large</button>
+            <button id="view-large" class="view-toggle hover:text-accent transition-colors" aria-pressed="true">List</button>
             <span class="opacity-30">|</span>
-            <button id="view-small" class="view-toggle hover:text-accent transition-colors" aria-pressed="false">Small</button>
+            <button id="view-small" class="view-toggle hover:text-accent transition-colors" aria-pressed="false">Gallery</button>
           </div>
         </div>
-        <div id="tags-list" class="hidden flex-wrap gap-2 mt-3">
+        <div id="tags-list" class="hidden flex-wrap gap-2 mt-3" style="display:none!important">
           {allTags.map((tag) => (
             <button
               class="tag-filter text-accent text-xs border border-accent px-3 py-1 hover:bg-accent hover:text-bg transition-colors"
@@ -91,30 +91,33 @@ function getProjectImageUrl(project: ProjectEntry): string {
 
       <!-- Large view -->
       <div id="large-view">
-        {sortedProjects.map((project) => (
-          <div class="project-item" data-tags={project.data.tags.join(',')}>
-            <ProjectCard
-              title={project.data.title}
-              dateRange={formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing)}
-              location={project.data.location}
-              tags={project.data.tags}
-              image={getProjectImageUrl(project)}
-              description={project.data.description}
-              slug={project.id.replace('/index.md', '')}
-            />
-          </div>
+        {sortedProjects.map((project, i) => (
+          <>
+            {i > 0 && <div class="max-w-6xl mx-auto px-4 md:px-8"><hr class="border-t border-[#6b6580]" /></div>}
+            <div class="project-item" data-tags={project.data.tags.join(',')}>
+              <ProjectCard
+                title={project.data.title}
+                dateRange={formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing)}
+                location={project.data.location}
+                tags={project.data.tags}
+                image={getProjectImageUrl(project)}
+
+                slug={project.id.replace('/index.md', '')}
+              />
+            </div>
+          </>
         ))}
       </div>
 
       <!-- Small view -->
       <div id="small-view" class="hidden px-4 md:px-8 pt-4 max-w-6xl mx-auto">
-        <div class="flex flex-wrap gap-2">
+        <div class="grid grid-cols-2 md:flex md:flex-wrap gap-2">
           {sortedProjects.map((project) => (
             <a href={`/projects/${project.id.replace('/index.md', '')}`} class="project-item block hover:opacity-70 transition-opacity border border-[#6b6580] p-2" data-tags={project.data.tags.join(',')} style="background-color: rgba(61, 56, 80, 0.3);">
               <img
                 src={getProjectImageUrl(project)}
                 alt={project.data.title}
-                class="w-[100px] h-[100px] object-cover"
+                class="w-full h-auto aspect-square md:w-[200px] md:h-[200px] object-cover"
                 loading="lazy"
               />
             </a>

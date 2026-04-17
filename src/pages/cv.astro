@@ -12,11 +12,6 @@ import SoftwareCV from '@components/cv/SoftwareCV.astro';
 
     <main class="py-16">
       <div class="max-w-4xl mx-auto px-4 md:px-8">
-        <!-- Prompt -->
-        <div id="cv-prompt" class="flex justify-end mb-4">
-          <p class="text-sm tracking-[0.15em] text-right cv-glow-text">Who do you want me to be?</p>
-        </div>
-
         <div class="flex items-center justify-between mb-12">
           <h1 id="cv-title" class="text-3xl tracking-[0.15em] font-normal text-accent uppercase transition-opacity duration-300">
             CV
@@ -39,25 +34,7 @@ import SoftwareCV from '@components/cv/SoftwareCV.astro';
   </div>
 </Layout>
 
-<style>
-  @keyframes subtle-glow {
-    0%, 100% {
-      color: var(--color-text-secondary);
-      text-shadow: none;
-    }
-    50% {
-      color: #24C29D;
-      text-shadow: 0 0 8px rgba(36, 194, 157, 0.4), 0 0 16px rgba(36, 194, 157, 0.2);
-    }
-  }
-
-  .cv-glow-text {
-    animation: subtle-glow 3s ease-in-out infinite;
-  }
-</style>
-
 <script>
-  const prompt = document.getElementById('cv-prompt')!;
   const title = document.getElementById('cv-title')!;
   const buttons = {
     creative: document.getElementById('cv-creative')!,
