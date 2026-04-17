@@ -13,38 +13,41 @@ import Header from '@components/Header.astro';
           ABOUT
         </h1>
         
-        <div class="flex flex-col md:flex-row gap-10 mb-10">
-          <div class="border border-[#6b6580] p-2 self-start" style="background-color: rgba(61, 56, 80, 0.3);">
-            <img src="/img/me.jpg" alt="Katie Ballinger" class="w-64 h-80 object-cover" />
+        <div class="flex flex-col md:flex-row gap-10">
+          <!-- Picture + contact -->
+          <div class="flex flex-col gap-6 self-start shrink-0">
+            <div class="border border-[#6b6580] p-2" style="background-color: rgba(61, 56, 80, 0.3);">
+              <img src="/img/me.jpg" alt="Katie Ballinger" class="w-64 h-80 object-cover" />
+            </div>
+            <div>
+              <h2 class="text-xl tracking-[0.1em] text-accent uppercase mb-4">Contact</h2>
+              <p class="text-text-secondary text-sm">
+                <a href="mailto:katie.ballinger@gmail.com" class="text-accent hover:underline">
+                  katie.ballinger@gmail.com
+                </a>
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div class="space-y-6 text-text-secondary leading-relaxed max-w-2xl">
-          <p>
-            Katie Ballinger is an artist and creative technologist based in Helsinki, Finland,
-            working at the intersection of technology, interactivity, and physical installation.
-          </p>
-          
-          <p>
-            Her practice explores how people interact with digital systems through 
-            tangible interfaces, creating immersive experiences that invite participation 
-            and play.
-          </p>
-          
-          <p>
-            With a background in electronics, 3D printing, and creative coding, 
-            Katie develops custom tools and installations that bridge the gap between 
-            the digital and physical worlds.
-          </p>
-        </div>
-        
-        <div class="mt-12">
-          <h2 class="text-xl tracking-[0.1em] text-accent uppercase mb-4">Contact</h2>
-          <p class="text-text-secondary text-sm">
-            <a href="mailto:katie.ballinger@gmail.com" class="text-accent hover:underline">
-              katie.ballinger@gmail.com
-            </a>
-          </p>
+          <!-- Text -->
+          <div class="space-y-6 text-text-secondary leading-relaxed">
+            <p>
+              Katie Ballinger is an artist and creative technologist based in Helsinki, Finland,
+              working at the intersection of technology, interactivity, and physical installation.
+            </p>
+
+            <p>
+              Her practice explores how people interact with digital systems through
+              tangible interfaces, creating immersive experiences that invite participation
+              and play.
+            </p>
+
+            <p>
+              With a background in electronics, 3D printing, and creative coding,
+              Katie develops custom tools and installations that bridge the gap between
+              the digital and physical worlds.
+            </p>
+          </div>
         </div>
       </div>
     </main>

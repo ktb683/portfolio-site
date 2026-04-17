@@ -2,11 +2,12 @@
 title: 'KALEIDO'
 slug: 'kaleido'
 description: 'An interactive kaleidoscope installation using 3D printed components, electronics, and custom code to create mesmerizing visual patterns.'
-startDate: 2024-01-01
-ongoing: true
+startDate: 2021-01-01
+endDate: 2023-12-31
+ongoing: false
 location: 'Helsinki, FI'
 tags: ['3Dprint', 'electronics', 'code', 'installation']
-image: 'kaleido-entropy.jpg'
+image: 'controller-kaleido.jpg'
 images:
   - 'kaleido-hiap.png'
 featured: true

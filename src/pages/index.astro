@@ -174,25 +174,26 @@ function getProjectImageUrl(project: ProjectEntry): string {
   }
 
   // View toggle
-  const largeBtn = document.getElementById('view-large')!;
-  const smallBtn = document.getElementById('view-small')!;
-  const largeView = document.getElementById('large-view')!;
-  const smallView = document.getElementById('small-view')!;
+  const listBtn = document.getElementById('view-large')!;
+  const galleryBtn = document.getElementById('view-small')!;
+  const listView = document.getElementById('large-view')!;
+  const galleryView = document.getElementById('small-view')!;
 
   const saved = localStorage.getItem('works-view');
-  if (saved === 'small') setView('small');
+  if (saved === 'gallery') setView('gallery');
+  else setView('list');
 
-  largeBtn.addEventListener('click', () => setView('large'));
-  smallBtn.addEventListener('click', () => setView('small'));
+  listBtn.addEventListener('click', () => setView('list'));
+  galleryBtn.addEventListener('click', () => setView('gallery'));
 
-  function setView(view: 'large' | 'small') {
-    const isLarge = view === 'large';
-    largeView.classList.toggle('hidden', !isLarge);
-    smallView.classList.toggle('hidden', isLarge);
-    largeBtn.setAttribute('aria-pressed', String(isLarge));
-    smallBtn.setAttribute('aria-pressed', String(!isLarge));
-    largeBtn.classList.toggle('text-accent', isLarge);
-    smallBtn.classList.toggle('text-accent', !isLarge);
+  function setView(view: 'list' | 'gallery') {
+    const isList = view === 'list';
+    listView.classList.toggle('hidden', !isList);
+    galleryView.classList.toggle('hidden', isList);
+    listBtn.setAttribute('aria-pressed', String(isList));
+    galleryBtn.setAttribute('aria-pressed', String(!isList));
+    listBtn.classList.toggle('text-accent', isList);
+    galleryBtn.classList.toggle('text-accent', !isList);
     localStorage.setItem('works-view', view);
   }
 </script>
