@@ -8,7 +8,7 @@ import { getCollection, render } from 'astro:content';
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map((project) => ({
-    params: { slug: project.id.replace('/index.md', '') },
+    params: { slug: project.id.replace('/index.mdx', '').replace('/index.md', '') },
     props: { project },
   }));
 }
@@ -30,7 +30,6 @@ function formatDateRange(startDate: Date, endDate?: Date, ongoing?: boolean): st
 }
 
 const dateRange = formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing);
-const allImages = [project.data.image, ...project.data.images].filter(Boolean);
 
 const imageModules = import.meta.glob('../../content/projects/*/*.{png,jpg,jpeg,gif,webp}', {
   eager: true,
@@ -44,8 +43,21 @@ for (const [path, mod] of Object.entries(imageModules)) {
   const filename = parts[parts.length - 1];
   projectImageMap[`${slugPart}/${filename}`] = mod.default;
 }
-const folder = project.id.split('/')[0];
-const resolvedImages = allImages.map((img) => projectImageMap[`${folder}/${img}`]).filter(Boolean) as ImageMetadata[];
+
+const folder = project.id.split('/')[0].replace('/index.mdx', '').replace('/index.md', '');
+const resolve = (f: string) => projectImageMap[`${folder}/${f}`];
+
+const coverImage = resolve(project.data.image);
+
+type GalleryItem = ImageMetadata | ImageMetadata[];
+const resolvedGallery: GalleryItem[] = project.data.images
+  .map((item) => {
+    if (Array.isArray(item)) {
+      return item.map(resolve).filter(Boolean) as ImageMetadata[];
+    }
+    return resolve(item);
+  })
+  .filter((item) => (Array.isArray(item) ? item.length > 0 : Boolean(item))) as GalleryItem[];
 
 ---
 
@@ -60,22 +72,22 @@ const resolvedImages = allImages.map((img) => projectImageMap[`${folder}/${img}`
           <div class="flex flex-col lg:flex-row gap-8 mb-8">
             <!-- Left: Main image -->
             <div class="lg:w-1/3">
-              {resolvedImages[0] && (
+              {coverImage && (
                 <div class="border-4 border-border overflow-hidden">
                   <Image
-                    src={resolvedImages[0]}
+                    src={coverImage}
                     alt={project.data.title}
-                    width={600}
-                    height={600}
+                    width={coverImage.width}
+                    height={coverImage.height}
                     class="w-full h-auto object-cover"
                   />
                 </div>
               )}
             </div>
             
-            <!-- Right: Title, metadata, and secondary image -->
-            <div class="lg:w-2/3 flex flex-col lg:flex-row gap-8">
-              <div class="lg:w-1/2 space-y-3">
+            <!-- Right: Title and metadata -->
+            <div class="lg:w-2/3">
+              <div class="space-y-3">
                 <h1 class="text-2xl tracking-[0.15em] font-normal text-accent uppercase">
                   {project.data.title}
                 </h1>
@@ -86,56 +98,59 @@ const resolvedImages = allImages.map((img) => projectImageMap[`${folder}/${img}`
                     <span class="text-accent text-xs">#{tag}</span>
                   ))}
                 </div>
+                {project.data.videoLink && (
+                  <a
+                    href={project.data.videoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block text-accent text-xs underline underline-offset-2 hover:opacity-80 transition-opacity mt-3"
+                  >
+                    {project.data.videoLink}
+                  </a>
+                )}
               </div>
-              
-              {resolvedImages[1] && (
-                <div class="lg:w-1/2">
-                  <div class="border-4 border-border overflow-hidden">
-                    <Image
-                      src={resolvedImages[1]}
-                      alt={`${project.data.title} - secondary`}
-                      width={600}
-                      height={600}
-                      class="w-full h-auto object-cover"
-                    />
-                  </div>
-                  {project.data.videoLink && (
-                    <a 
-                      href={project.data.videoLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      class="inline-block text-accent text-xs underline underline-offset-2 hover:opacity-80 transition-opacity mt-3"
-                    >
-                      {project.data.videoLink}
-                    </a>
-                  )}
-                </div>
-              )}
             </div>
           </div>
           
           <!-- Description / Content -->
           <div class="max-w-lg">
-            <div class="text-text-secondary text-sm leading-relaxed prose prose-invert prose-sm">
+            <div class="text-text-secondary text-sm leading-relaxed prose prose-invert prose-sm [&_p]:mb-4 [&_a]:underline [&_a]:underline-offset-2">
               <Content />
             </div>
           </div>
           
           <!-- Additional images -->
-          {resolvedImages.length > 2 && (
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-              {resolvedImages.slice(2).map((img, i) => (
-                <div class="border-4 border-border overflow-hidden">
-                  <Image
-                    src={img}
-                    alt={`${project.data.title} - image ${i + 3}`}
-                    width={600}
-                    height={600}
-                    class="w-full h-auto object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+          {resolvedGallery.length > 0 && (
+            <div class="flex flex-col gap-4 mt-8">
+              {resolvedGallery.map((item, i) =>
+                Array.isArray(item) ? (
+                  <div class="flex gap-4">
+                    {item.map((img, j) => (
+                      <div class="border-4 border-border overflow-hidden h-96">
+                        <Image
+                          src={img}
+                          alt={`${project.data.title} - image ${i}-${j}`}
+                          width={img.width}
+                          height={img.height}
+                          class="h-full w-auto"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div class="border-4 border-border overflow-hidden">
+                    <Image
+                      src={item}
+                      alt={`${project.data.title} - image ${i + 2}`}
+                      width={item.width}
+                      height={item.height}
+                      class="w-full h-auto"
+                      loading="lazy"
+                    />
+                  </div>
+                )
+              )}
             </div>
           )}
           
@@ -176,4 +191,9 @@ const resolvedImages = allImages.map((img) => projectImageMap[`${folder}/${img}`
       </article>
     </main>
   </div>
+<style is:global>
+  .prose a {
+    color: var(--color-accent-400) !important;
+  }
+</style>
 </Layout>

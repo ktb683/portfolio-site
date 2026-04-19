@@ -15,7 +15,7 @@ const blog = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/index.md', base: './src/content/projects' }),
+  loader: glob({ pattern: '**/index.{md,mdx}', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -25,7 +25,7 @@ const projects = defineCollection({
     location: z.string().default(''),
     tags: z.array(z.string()).default([]),
     image: z.string(),
-    images: z.array(z.string()).default([]),
+    images: z.array(z.union([z.string(), z.array(z.string())])).default([]),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
     videoLink: z.string().url().optional(),
