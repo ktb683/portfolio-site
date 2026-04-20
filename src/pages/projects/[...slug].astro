@@ -126,13 +126,13 @@ const resolvedGallery: GalleryItem[] = project.data.images
                 Array.isArray(item) ? (
                   <div class="flex gap-4">
                     {item.map((img, j) => (
-                      <div class="border-4 border-border overflow-hidden h-96">
+                      <div class="flex-1 min-w-0 border-4 border-border overflow-hidden h-96">
                         <Image
                           src={img}
                           alt={`${project.data.title} - image ${i}-${j}`}
                           width={img.width}
                           height={img.height}
-                          class="h-full w-auto"
+                          class="w-full h-full object-cover"
                           loading="lazy"
                         />
                       </div>
