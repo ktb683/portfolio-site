@@ -98,7 +98,7 @@ function getProjectImage(project: ProjectEntry): ImageMetadata {
             <div class="project-item" data-tags={project.data.tags.join(',')}>
               <ProjectCard
                 title={project.data.title}
-                dateRange={formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing)}
+                dateRange={project.data.hideDate ? '' : formatDateRange(project.data.startDate, project.data.endDate, project.data.ongoing)}
                 location={project.data.location}
                 tags={project.data.tags}
                 image={getProjectImage(project)}

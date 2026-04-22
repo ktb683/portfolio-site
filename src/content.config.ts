@@ -27,6 +27,7 @@ const projects = defineCollection({
     image: z.string(),
     images: z.array(z.union([z.string(), z.array(z.string())])).default([]),
     featured: z.boolean().default(false),
+    hideDate: z.boolean().default(false),
     draft: z.boolean().default(false),
     videoLink: z.string().url().optional(),
     externalLink: z.string().url().optional(),

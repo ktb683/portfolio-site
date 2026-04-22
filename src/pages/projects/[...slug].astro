@@ -91,7 +91,7 @@ const resolvedGallery: GalleryItem[] = project.data.images
                 <h1 class="text-2xl tracking-[0.15em] font-normal text-accent uppercase">
                   {project.data.title}
                 </h1>
-                <p class="text-text-secondary text-sm tracking-wide">{dateRange}</p>
+                {!project.data.hideDate && <p class="text-text-secondary text-sm tracking-wide">{dateRange}</p>}
                 <p class="text-text-secondary text-sm">{project.data.location}</p>
                 <div class="flex flex-wrap gap-1 pt-1">
                   {project.data.tags.map((tag: string) => (
